@@ -1,0 +1,5 @@
+0x7fffffffde20
+7fffffffde20
+7f ff ff ff de 20
+20 de ff ff ff 7f
+\x20\xde\xff\xff\xff\x7f
