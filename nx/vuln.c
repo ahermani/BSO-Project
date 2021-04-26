@@ -1,4 +1,4 @@
-
+// gcc vuln.c -o out -fno-stack-protector -z execstack
 #include <stdio.h>
 #include <string.h>
 
@@ -11,6 +11,8 @@ void vuln_func()
 }
 int main()
 {
+	int v;
+	printf("Stack: %p\n", &v);
 	puts("Hello adventurer, state your name");
 	vuln_func();
         return 0;
