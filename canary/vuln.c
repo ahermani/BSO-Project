@@ -4,13 +4,12 @@
 
 void vuln_func()
 {
-	char password[30];
+	char password[20]="admin123";
         char input[30];
-
-        strncpy(password, "aaaaaaaaaaaa", 30);
+	
         gets(input);
 
-        if (0 == strncmp(input, password, 30)){
+        if (!strncmp(input, password, sizeof(password))){
                 printf("correct!\n");
         }else{
                 printf("wrong!\n");
