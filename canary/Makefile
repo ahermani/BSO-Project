@@ -1,6 +1,6 @@
 CC := gcc
-CFLAGS = -Wall -Wextra -m32 -fno-stack-protector #-Ofast -march=native
-LDFLAGS = -m32 -fno-stack-protector
+CFLAGS = -Wall -Wextra -m32 -fno-stack-protector -fno-pie -no-pie#-Ofast -march=native
+LDFLAGS = -m32 -fno-stack-protector -fno-pie -no-pie
 #LDFLAGS =
 #LDFLAGS ?=
 SRC := $(wildcard *.c)
@@ -19,7 +19,7 @@ clean:
 
 .PHONY: canary
 canary:
-	$(MAKE) CFLAGS="-m32 -fstack-protector" LDFLAGS="-m32 -fstack-protector"
+	$(MAKE) CFLAGS="-m32 -fstack-protector -fno-pie -no-pie" LDFLAGS="-m32 -fstack-protector -fno-pie -no-pie"
 
 .PHONY: rebuild
 rebuild:
