@@ -1,6 +1,6 @@
 CC := gcc
-CFLAGS = -Wall -Wextra -no-pie -fno-stack-protector -z execstack -masm=intel#-Ofast -march=native
-LDFLAGS = -no-pie -fno-stack-protector -z execstack -masm=intel
+CFLAGS = -Wall -Wextra -no-pie -fno-stack-protector #-Ofast -march=native
+LDFLAGS = -no-pie -fno-stack-protector 
 #LDFLAGS =
 #LDFLAGS ?=
 SRC := $(wildcard *.c)
@@ -19,7 +19,11 @@ clean:
 
 .PHONY: pie
 pie:
-	$(MAKE) CFLAGS="-fno-stack-protector -z execstack -masm=intel" LDFLAGS="-fno-stack-protector -z execstack -masm=intel"
+	$(MAKE) CFLAGS="-fno-stack-protector" LDFLAGS="-fno-stack-protector"
+
+.PHONY: canary
+canary:
+	$(MAKE) CLFAGS="-no-pie -fstack-protector" LDFLAGS="-no-pie -fstack-protector"
 
 .PHONY: rebuild
 rebuild:
